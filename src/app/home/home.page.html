@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Recipes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleTheme()">
+        <ion-icon [name]="isDarkTheme() ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Recipes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Search Bar -->
+  <ion-searchbar placeholder="Search for recipes..."></ion-searchbar>
+
+  <!-- Category Chips -->
+  <div class="chips-container">
+    <ion-chip *ngFor="let category of categories" (click)="toggleCategory(category)">
+      <ion-label>{{ category }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- Trending Recipes -->
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Trending Recipes</ion-label>
+    </ion-item-divider>
+    
+    <div class="recipes-grid">
+      <ion-card *ngFor="let recipe of trendingRecipes">
+        <ion-card-header>
+          <ion-card-title>{{ recipe.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>{{ recipe.description }}</p>
+          <ion-badge color="primary">{{ recipe.tag }}</ion-badge>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-list>
+</ion-content>
